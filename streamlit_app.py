@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from urllib.parse import urljoin
+import re
 
 st.set_page_config(page_title="E-ZAK Karlovarský kraj", layout="wide")
 st.title("🛡️ E-ZAK Karlovarský kraj")
@@ -44,7 +45,8 @@ if st.button("🔄 Načíst všechny aktivní zakázky", type="primary"):
                     active = []
                     for link in contract_links:
                         name = link.text.strip()
-                        if not name: continue
+                        if not name: 
+                            continue
                         full_link = urljoin(profile_url, link["href"])
 
                         # Najdeme lhůtu
